@@ -1,0 +1,90 @@
+SQL: les instruction de controle:
+les structure conditionnel:
+if, case,
+les struture iteratives:
+loop,for,while,exit,
+
+
+
+
+declare
+v_nom employé.nom%type ;
+v_sal employé.salaire%type;
+begin
+if v_sal<2000 THEN
+DBMS_OUTPUT.PUT_LINE('bas salaire:')
+else 
+DBMS_OUTPUT.PUT_LINE('haut salaire')
+end if;
+end
+declare
+v_com employé.commission%type
+begin
+select commission into v_comm from hr.employees 
+where fist_name='paul'
+if v_comm > 0 then 
+DBMS_OUTPUT.PUT_LINE('l'employee a une commission')
+else if v_comm =0 then
+DBMS_OUTPUT.PUT_LINE('l'employee a zero commission')
+else 
+DBMS_OUTPUT.PUT_LINE('pas de commission')
+
+
+
+ 
+For i in 6 
+loop 
+resultat:= resultat*i;
+end loop;
+DECLARTION DUN ENREGISTREMENT:
+
+type nom du type record is record(
+nom atribut1 type atribut1,
+nom atribur2 type atribut2)
+REC TYPE NOMTYPE
+DECLARATION DUNE TABLE:
+en deux etapes:type de lelement de la atable et variable type de tables
+type nom du table is table of type argument
+index by binary integer ;
+nom variable  nom du type table
+nb: une variable avec le meme type qune table:
+v_ligne table%rowtype
+pour acceder:
+v_lignr.nom_colone.d
+
+type rec1 record is record(
+numero EMP.EMPLOYEE_ID%type not null:='100',
+nom EMP.nom%type,
+job EMP.job%type,
+salaire EMP.salaire%type
+);
+rec rec1;
+begin 
+select * into rec1 
+les curseur:
+deux type de curseur :
+implicite et explicite
+implicite =gere automatiquement pas de declaration (par defau)
+atribut
+sql%found
+sql%rowcount
+sql%notfound
+explicite est gerer par lutilisateur pour renvoyer plusieur ligne
+lensemble des ligne retourné par select : open fetch,close
+
+DECLARE
+nb_ligne NUMBER;
+BEGIN
+UPDATE emp
+SET commission_pct = 0
+WHERE job_id = 'it_proc';
+IF SQL%NOTFOUND THEN
+DBMS_OUTPUT.PUT_LINE('aucune ligne modifier');
+else
+DBMS_OUTPUT.PUT_LINE('nombre de ligne modifiées:'||SQL%ROWCOUNT );
+END IF;
+END;
+
+
+
+
